@@ -1,8 +1,7 @@
 package com.rossi.gym.entity;
 
 import com.rossi.gym.enums.UserRole;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +13,8 @@ import java.util.List;
 @Entity(name = "users")
 public class User implements UserDetails {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String login;
     private String password;
@@ -36,7 +37,7 @@ public class User implements UserDetails {
         return login;
     }
 
-    public String getRole() {
+    public UserRole getRole() {
         return role;
     }
 
